@@ -75,7 +75,6 @@ The pipeline uses the following linked services in Azure Data Factory:
    └── diagrams.png
 ├──/factory
 ├──/linkedService
-│   └── architecture-diagram.png  # Draw.io diagram of the pipeline
 ├──/pipeline
 ├── README.md                 # This file
 <code><pre>
