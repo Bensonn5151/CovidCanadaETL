@@ -1,0 +1,9 @@
+{
+	"name": "coviddataproject",
+	"location": "eastus",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "45500f2d-c968-4c72-a6cb-dedbc1f1b1d9",
+		"tenantId": "91d546d3-28cc-448c-9554-18a92528c07b"
+	}
+}

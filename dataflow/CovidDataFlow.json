@@ -1,0 +1,114 @@
+{
+	"name": "CovidDataFlow",
+	"properties": {
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "CovidDataSource",
+						"type": "DatasetReference"
+					},
+					"name": "CovidDataSource"
+				},
+				{
+					"dataset": {
+						"referenceName": "CovidDataSource",
+						"type": "DatasetReference"
+					},
+					"name": "CovidDataSource2"
+				}
+			],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "GeneralCovidData",
+						"type": "DatasetReference"
+					},
+					"name": "GeneralCovidData"
+				},
+				{
+					"dataset": {
+						"referenceName": "CanadaCovidLS",
+						"type": "DatasetReference"
+					},
+					"name": "CanadianCovidData"
+				}
+			],
+			"transformations": [
+				{
+					"name": "derivedColumn1",
+					"description": "Change NULL values to Unknown"
+				},
+				{
+					"name": "select1"
+				},
+				{
+					"name": "filter1"
+				}
+			],
+			"scriptLines": [
+				"source(output(",
+				"          Date as string,",
+				"          {Country/Region} as string,",
+				"          {Province/State} as string,",
+				"          Lat as string,",
+				"          Long as string,",
+				"          Confirmed as string,",
+				"          Recovered as string,",
+				"          Deaths as string",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false) ~> CovidDataSource",
+				"source(output(",
+				"          Date as string,",
+				"          {Country/Region} as string,",
+				"          {Province/State} as string,",
+				"          Lat as string,",
+				"          Long as string,",
+				"          Confirmed as string,",
+				"          Recovered as string,",
+				"          Deaths as string",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false) ~> CovidDataSource2",
+				"CovidDataSource derive({Province/State} = iif(isNull(byName('Province/State')), 'Unknown', toString(byName('Province/State')))) ~> derivedColumn1",
+				"CovidDataSource2 select(mapColumn(",
+				"          Date,",
+				"          Country = {Country/Region},",
+				"          Province = {Province/State},",
+				"          Lat,",
+				"          Long,",
+				"          Confirmed,",
+				"          Recovered,",
+				"          Deaths",
+				"     ),",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true) ~> select1",
+				"select1 filter(Country=='Canada') ~> filter1",
+				"derivedColumn1 sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     deletable:false,",
+				"     insertable:true,",
+				"     updateable:false,",
+				"     upsertable:false,",
+				"     format: 'table',",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true,",
+				"     errorHandlingOption: 'stopOnFirstError') ~> GeneralCovidData",
+				"filter1 sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     deletable:false,",
+				"     insertable:true,",
+				"     updateable:false,",
+				"     upsertable:false,",
+				"     format: 'table',",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true,",
+				"     errorHandlingOption: 'stopOnFirstError') ~> CanadianCovidData"
+			]
+		}
+	}
+}

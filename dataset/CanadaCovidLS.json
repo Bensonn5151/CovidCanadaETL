@@ -1,0 +1,17 @@
+{
+	"name": "CanadaCovidLS",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "CanadaCovidLinkService",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "CanadaCovidData"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

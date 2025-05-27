@@ -1,0 +1,57 @@
+{
+	"name": "CovidDataset",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "CovidDatasetSink",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "Date",
+				"type": "date"
+			},
+			{
+				"name": "Country/Region",
+				"type": "varchar"
+			},
+			{
+				"name": "Province/State",
+				"type": "varchar"
+			},
+			{
+				"name": "Lat",
+				"type": "decimal",
+				"precision": 10,
+				"scale": 6
+			},
+			{
+				"name": "Long",
+				"type": "decimal",
+				"precision": 10,
+				"scale": 6
+			},
+			{
+				"name": "Confirmed",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "Recovered",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "Deaths",
+				"type": "int",
+				"precision": 10
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "CovidDataset"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

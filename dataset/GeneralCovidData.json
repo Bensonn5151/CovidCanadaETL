@@ -1,0 +1,17 @@
+{
+	"name": "GeneralCovidData",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "GeneralCovidData",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "GeneralCovidData"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

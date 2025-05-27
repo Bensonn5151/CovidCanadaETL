@@ -1,0 +1,57 @@
+{
+	"name": "CovidDataSource",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "CovidDataLinkedService",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": "cov_data.csv",
+				"fileSystem": "coviddata"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": [
+			{
+				"name": "Date",
+				"type": "String"
+			},
+			{
+				"name": "Country/Region",
+				"type": "String"
+			},
+			{
+				"name": "Province/State",
+				"type": "String"
+			},
+			{
+				"name": "Lat",
+				"type": "String"
+			},
+			{
+				"name": "Long",
+				"type": "String"
+			},
+			{
+				"name": "Confirmed",
+				"type": "String"
+			},
+			{
+				"name": "Recovered",
+				"type": "String"
+			},
+			{
+				"name": "Deaths",
+				"type": "String"
+			}
+		]
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}
