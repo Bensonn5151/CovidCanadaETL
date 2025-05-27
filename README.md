@@ -68,14 +68,17 @@ The pipeline uses the following linked services in Azure Data Factory:
        - **Sink**: `CanadaCovidData` table in Azure SQL Database.
 
 ## Repository Structure
-CanadaCovidADFPipeline
-├── /docs
+<pre><code> CanadaCovidADFPipeline
+├──/dataflow
+├──/dataset
+├──/docs
+   └── diagrams.png
+├──/factory
+├──/linkedService
 │   └── architecture-diagram.png  # Draw.io diagram of the pipeline
-├── /sql
-│   └── create_tables.sql         # SQL scripts for creating RawCovidData and CanadaCovidData tables
-├── /src
-│   └── pipeline.json             # ADF pipeline JSON (Copy Activity and Data Flow)
-├── README.md                    # This file
+├──/pipeline
+├── README.md                 # This file
+<code><pre>
 
 ## Setup Instructions
 1. **Prerequisites**:
