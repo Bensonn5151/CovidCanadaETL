@@ -670,7 +670,17 @@
 						"     format: 'table',",
 						"     skipDuplicateMapInputs: true,",
 						"     skipDuplicateMapOutputs: true,",
-						"     errorHandlingOption: 'stopOnFirstError') ~> GeneralCovidData",
+						"     errorHandlingOption: 'stopOnFirstError',",
+						"     mapColumn(",
+						"          Date,",
+						"          {Country/Region},",
+						"          {Province/State},",
+						"          Lat,",
+						"          Long,",
+						"          Confirmed,",
+						"          Recovered,",
+						"          Deaths",
+						"     )) ~> GeneralCovidData",
 						"derivedColumn2 sink(allowSchemaDrift: true,",
 						"     validateSchema: false,",
 						"     deletable:false,",
@@ -680,7 +690,17 @@
 						"     format: 'table',",
 						"     skipDuplicateMapInputs: true,",
 						"     skipDuplicateMapOutputs: true,",
-						"     errorHandlingOption: 'stopOnFirstError') ~> CanadianCovidData"
+						"     errorHandlingOption: 'stopOnFirstError',",
+						"     mapColumn(",
+						"          Date,",
+						"          Country,",
+						"          Province,",
+						"          Lat,",
+						"          Long,",
+						"          Confirmed,",
+						"          Recovered,",
+						"          Deaths",
+						"     )) ~> CanadianCovidData"
 					]
 				}
 			},
@@ -697,7 +717,7 @@
 			"properties": {
 				"activities": [
 					{
-						"name": "CanadaCovidDataFlow",
+						"name": "CovidDataFlow",
 						"type": "ExecuteDataFlow",
 						"dependsOn": [],
 						"policy": {
