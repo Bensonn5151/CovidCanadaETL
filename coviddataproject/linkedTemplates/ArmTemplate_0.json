@@ -1,0 +1,743 @@
+{
+	"$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"type": "string",
+			"metadata": "Data Factory name",
+			"defaultValue": "coviddataproject"
+		},
+		"CanadaCovidData_password": {
+			"type": "secureString",
+			"metadata": "Secure string for 'password' of 'CanadaCovidData'"
+		},
+		"CanadaCovidLinkService_password": {
+			"type": "secureString",
+			"metadata": "Secure string for 'password' of 'CanadaCovidLinkService'"
+		},
+		"CanadaCovidLinkedService_password": {
+			"type": "secureString",
+			"metadata": "Secure string for 'password' of 'CanadaCovidLinkedService'"
+		},
+		"CovidDataLinkedService_accountKey": {
+			"type": "secureString",
+			"metadata": "Secure string for 'accountKey' of 'CovidDataLinkedService'"
+		},
+		"CovidDatasetSink_password": {
+			"type": "secureString",
+			"metadata": "Secure string for 'password' of 'CovidDatasetSink'"
+		},
+		"GeneralCovidData_password": {
+			"type": "secureString",
+			"metadata": "Secure string for 'password' of 'GeneralCovidData'"
+		},
+		"CanadaCovidData_properties_typeProperties_server": {
+			"type": "string",
+			"defaultValue": "bensqldb.database.windows.net"
+		},
+		"CanadaCovidData_properties_typeProperties_database": {
+			"type": "string",
+			"defaultValue": "Yourfirstproject"
+		},
+		"CanadaCovidData_properties_typeProperties_userName": {
+			"type": "string",
+			"defaultValue": "elusive_ben"
+		},
+		"CanadaCovidLinkService_properties_typeProperties_server": {
+			"type": "string",
+			"defaultValue": "bensqldb.database.windows.net"
+		},
+		"CanadaCovidLinkService_properties_typeProperties_database": {
+			"type": "string",
+			"defaultValue": "Yourfirstproject"
+		},
+		"CanadaCovidLinkService_properties_typeProperties_userName": {
+			"type": "string",
+			"defaultValue": "elusive_ben"
+		},
+		"CanadaCovidLinkedService_properties_typeProperties_server": {
+			"type": "string",
+			"defaultValue": "bensqldb.database.windows.net"
+		},
+		"CanadaCovidLinkedService_properties_typeProperties_database": {
+			"type": "string",
+			"defaultValue": "Yourfirstproject"
+		},
+		"CanadaCovidLinkedService_properties_typeProperties_userName": {
+			"type": "string",
+			"defaultValue": "elusive_bem"
+		},
+		"CovidDataLinkedService_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://datalakecompanystorage.dfs.core.windows.net/"
+		},
+		"CovidDatasetSink_properties_typeProperties_server": {
+			"type": "string",
+			"defaultValue": "bensqldb.database.windows.net"
+		},
+		"CovidDatasetSink_properties_typeProperties_database": {
+			"type": "string",
+			"defaultValue": "Yourfirstproject"
+		},
+		"CovidDatasetSink_properties_typeProperties_userName": {
+			"type": "string",
+			"defaultValue": "elusive_ben"
+		},
+		"GeneralCovidData_properties_typeProperties_server": {
+			"type": "string",
+			"defaultValue": "bensqldb.database.windows.net"
+		},
+		"GeneralCovidData_properties_typeProperties_database": {
+			"type": "string",
+			"defaultValue": "Yourfirstproject"
+		},
+		"GeneralCovidData_properties_typeProperties_userName": {
+			"type": "string",
+			"defaultValue": "elusive_ben"
+		}
+	},
+	"variables": {
+		"factoryId": "[concat('Microsoft.DataFactory/factories/', parameters('factoryName'))]"
+	},
+	"resources": [
+		{
+			"name": "[concat(parameters('factoryName'), '/CanadaCovidData')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "AzureSqlDatabase",
+				"typeProperties": {
+					"server": "[parameters('CanadaCovidData_properties_typeProperties_server')]",
+					"database": "[parameters('CanadaCovidData_properties_typeProperties_database')]",
+					"encrypt": "mandatory",
+					"trustServerCertificate": false,
+					"authenticationType": "SQL",
+					"userName": "[parameters('CanadaCovidData_properties_typeProperties_userName')]",
+					"password": {
+						"type": "SecureString",
+						"value": "[parameters('CanadaCovidData_password')]"
+					}
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/CanadaCovidLinkService')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "AzureSqlDatabase",
+				"typeProperties": {
+					"server": "[parameters('CanadaCovidLinkService_properties_typeProperties_server')]",
+					"database": "[parameters('CanadaCovidLinkService_properties_typeProperties_database')]",
+					"encrypt": "mandatory",
+					"trustServerCertificate": false,
+					"authenticationType": "SQL",
+					"userName": "[parameters('CanadaCovidLinkService_properties_typeProperties_userName')]",
+					"password": {
+						"type": "SecureString",
+						"value": "[parameters('CanadaCovidLinkService_password')]"
+					}
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/CanadaCovidLinkedService')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "AzureSqlDatabase",
+				"typeProperties": {
+					"server": "[parameters('CanadaCovidLinkedService_properties_typeProperties_server')]",
+					"database": "[parameters('CanadaCovidLinkedService_properties_typeProperties_database')]",
+					"encrypt": "mandatory",
+					"trustServerCertificate": false,
+					"authenticationType": "SQL",
+					"userName": "[parameters('CanadaCovidLinkedService_properties_typeProperties_userName')]",
+					"password": {
+						"type": "SecureString",
+						"value": "[parameters('CanadaCovidLinkedService_password')]"
+					}
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/CovidDataLinkedService')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "AzureBlobFS",
+				"typeProperties": {
+					"url": "[parameters('CovidDataLinkedService_properties_typeProperties_url')]",
+					"accountKey": {
+						"type": "SecureString",
+						"value": "[parameters('CovidDataLinkedService_accountKey')]"
+					}
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/CovidDatasetSink')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "AzureSqlDatabase",
+				"typeProperties": {
+					"server": "[parameters('CovidDatasetSink_properties_typeProperties_server')]",
+					"database": "[parameters('CovidDatasetSink_properties_typeProperties_database')]",
+					"encrypt": "mandatory",
+					"trustServerCertificate": false,
+					"authenticationType": "SQL",
+					"userName": "[parameters('CovidDatasetSink_properties_typeProperties_userName')]",
+					"password": {
+						"type": "SecureString",
+						"value": "[parameters('CovidDatasetSink_password')]"
+					}
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/GeneralCovidData')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "AzureSqlDatabase",
+				"typeProperties": {
+					"server": "[parameters('GeneralCovidData_properties_typeProperties_server')]",
+					"database": "[parameters('GeneralCovidData_properties_typeProperties_database')]",
+					"encrypt": "mandatory",
+					"trustServerCertificate": false,
+					"authenticationType": "SQL",
+					"userName": "[parameters('GeneralCovidData_properties_typeProperties_userName')]",
+					"password": {
+						"type": "SecureString",
+						"value": "[parameters('GeneralCovidData_password')]"
+					}
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/CanadaCovidLS')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "CanadaCovidLinkService",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [],
+				"typeProperties": {
+					"schema": "dbo",
+					"table": "CanadaCovidData"
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/CanadaCovidLinkService')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/CovidDataSource')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "CovidDataLinkedService",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "DelimitedText",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobFSLocation",
+						"fileName": "cov_data.csv",
+						"fileSystem": "coviddata"
+					},
+					"columnDelimiter": ",",
+					"escapeChar": "\\",
+					"firstRowAsHeader": true,
+					"quoteChar": "\""
+				},
+				"schema": [
+					{
+						"name": "Date",
+						"type": "String"
+					},
+					{
+						"name": "Country/Region",
+						"type": "String"
+					},
+					{
+						"name": "Province/State",
+						"type": "String"
+					},
+					{
+						"name": "Lat",
+						"type": "String"
+					},
+					{
+						"name": "Long",
+						"type": "String"
+					},
+					{
+						"name": "Confirmed",
+						"type": "String"
+					},
+					{
+						"name": "Recovered",
+						"type": "String"
+					},
+					{
+						"name": "Deaths",
+						"type": "String"
+					}
+				]
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/CovidDataLinkedService')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/CovidDataset')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "CovidDatasetSink",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [
+					{
+						"name": "Date",
+						"type": "date"
+					},
+					{
+						"name": "Country/Region",
+						"type": "varchar"
+					},
+					{
+						"name": "Province/State",
+						"type": "varchar"
+					},
+					{
+						"name": "Lat",
+						"type": "decimal",
+						"precision": 10,
+						"scale": 6
+					},
+					{
+						"name": "Long",
+						"type": "decimal",
+						"precision": 10,
+						"scale": 6
+					},
+					{
+						"name": "Confirmed",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "Recovered",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "Deaths",
+						"type": "int",
+						"precision": 10
+					}
+				],
+				"typeProperties": {
+					"schema": "dbo",
+					"table": "CovidDataset"
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/CovidDatasetSink')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/GeneralCovidData')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "GeneralCovidData",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [],
+				"typeProperties": {
+					"schema": "dbo",
+					"table": "GeneralCovidData"
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/GeneralCovidData')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/CopyActivity')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"activities": [
+					{
+						"name": "CovidCopyData",
+						"type": "Copy",
+						"dependsOn": [],
+						"policy": {
+							"timeout": "0.12:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"source": {
+								"type": "DelimitedTextSource",
+								"storeSettings": {
+									"type": "AzureBlobFSReadSettings",
+									"recursive": true,
+									"enablePartitionDiscovery": false
+								},
+								"formatSettings": {
+									"type": "DelimitedTextReadSettings"
+								}
+							},
+							"sink": {
+								"type": "AzureSqlSink",
+								"writeBehavior": "insert",
+								"sqlWriterUseTableLock": false
+							},
+							"enableStaging": false,
+							"translator": {
+								"type": "TabularTranslator",
+								"mappings": [
+									{
+										"source": {
+											"name": "Date",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "Date",
+											"type": "DateTime",
+											"physicalType": "date"
+										}
+									},
+									{
+										"source": {
+											"name": "Country/Region",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "Country/Region",
+											"type": "String",
+											"physicalType": "varchar"
+										}
+									},
+									{
+										"source": {
+											"name": "Province/State",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "Province/State",
+											"type": "String",
+											"physicalType": "varchar"
+										}
+									},
+									{
+										"source": {
+											"name": "Lat",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "Lat",
+											"type": "Decimal",
+											"physicalType": "decimal",
+											"scale": 6,
+											"precision": 10
+										}
+									},
+									{
+										"source": {
+											"name": "Long",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "Long",
+											"type": "Decimal",
+											"physicalType": "decimal",
+											"scale": 6,
+											"precision": 10
+										}
+									},
+									{
+										"source": {
+											"name": "Confirmed",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "Confirmed",
+											"type": "Int32",
+											"physicalType": "int"
+										}
+									},
+									{
+										"source": {
+											"name": "Recovered",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "Recovered",
+											"type": "Int32",
+											"physicalType": "int"
+										}
+									},
+									{
+										"source": {
+											"name": "Deaths",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "Deaths",
+											"type": "Int32",
+											"physicalType": "int"
+										}
+									}
+								],
+								"typeConversion": true,
+								"typeConversionSettings": {
+									"allowDataTruncation": true,
+									"treatBooleanAsNumber": false
+								}
+							}
+						},
+						"inputs": [
+							{
+								"referenceName": "CovidDataSource",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						],
+						"outputs": [
+							{
+								"referenceName": "CovidDataset",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						]
+					}
+				],
+				"policy": {
+					"elapsedTimeMetric": {}
+				},
+				"annotations": [],
+				"lastPublishTime": "2025-05-27T06:24:45Z"
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/datasets/CovidDataSource')]",
+				"[concat(variables('factoryId'), '/datasets/CovidDataset')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/CovidDataFlow')]",
+			"type": "Microsoft.DataFactory/factories/dataflows",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"type": "MappingDataFlow",
+				"typeProperties": {
+					"sources": [
+						{
+							"dataset": {
+								"referenceName": "CovidDataSource",
+								"type": "DatasetReference"
+							},
+							"name": "CovidDataSource"
+						},
+						{
+							"dataset": {
+								"referenceName": "CovidDataSource",
+								"type": "DatasetReference"
+							},
+							"name": "CovidDataSource2"
+						}
+					],
+					"sinks": [
+						{
+							"dataset": {
+								"referenceName": "GeneralCovidData",
+								"type": "DatasetReference"
+							},
+							"name": "GeneralCovidData"
+						},
+						{
+							"dataset": {
+								"referenceName": "CanadaCovidLS",
+								"type": "DatasetReference"
+							},
+							"name": "CanadianCovidData"
+						}
+					],
+					"transformations": [
+						{
+							"name": "derivedColumn1",
+							"description": "Change NULL values to Unknown"
+						},
+						{
+							"name": "select1"
+						},
+						{
+							"name": "filter1"
+						},
+						{
+							"name": "derivedColumn2"
+						}
+					],
+					"scriptLines": [
+						"source(output(",
+						"          Date as string,",
+						"          {Country/Region} as string,",
+						"          {Province/State} as string,",
+						"          Lat as string,",
+						"          Long as string,",
+						"          Confirmed as string,",
+						"          Recovered as string,",
+						"          Deaths as string",
+						"     ),",
+						"     allowSchemaDrift: true,",
+						"     validateSchema: false,",
+						"     ignoreNoFilesFound: false) ~> CovidDataSource",
+						"source(output(",
+						"          Date as string,",
+						"          {Country/Region} as string,",
+						"          {Province/State} as string,",
+						"          Lat as string,",
+						"          Long as string,",
+						"          Confirmed as string,",
+						"          Recovered as string,",
+						"          Deaths as string",
+						"     ),",
+						"     allowSchemaDrift: true,",
+						"     validateSchema: false,",
+						"     ignoreNoFilesFound: false) ~> CovidDataSource2",
+						"CovidDataSource derive({Province/State} = iif(isNull(byName('Province/State')), 'Unknown', toString(byName('Province/State')))) ~> derivedColumn1",
+						"CovidDataSource2 select(mapColumn(",
+						"          Date,",
+						"          Country = {Country/Region},",
+						"          Province = {Province/State},",
+						"          Lat,",
+						"          Long,",
+						"          Confirmed,",
+						"          Recovered,",
+						"          Deaths",
+						"     ),",
+						"     skipDuplicateMapInputs: true,",
+						"     skipDuplicateMapOutputs: true) ~> select1",
+						"select1 filter(Country=='Canada') ~> filter1",
+						"filter1 derive(Recovered = iif(isNull(Recovered),'unknown',Recovered)) ~> derivedColumn2",
+						"derivedColumn1 sink(allowSchemaDrift: true,",
+						"     validateSchema: false,",
+						"     deletable:false,",
+						"     insertable:true,",
+						"     updateable:false,",
+						"     upsertable:false,",
+						"     format: 'table',",
+						"     skipDuplicateMapInputs: true,",
+						"     skipDuplicateMapOutputs: true,",
+						"     errorHandlingOption: 'stopOnFirstError') ~> GeneralCovidData",
+						"derivedColumn2 sink(allowSchemaDrift: true,",
+						"     validateSchema: false,",
+						"     deletable:false,",
+						"     insertable:true,",
+						"     updateable:false,",
+						"     upsertable:false,",
+						"     format: 'table',",
+						"     skipDuplicateMapInputs: true,",
+						"     skipDuplicateMapOutputs: true,",
+						"     errorHandlingOption: 'stopOnFirstError') ~> CanadianCovidData"
+					]
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/datasets/CovidDataSource')]",
+				"[concat(variables('factoryId'), '/datasets/GeneralCovidData')]",
+				"[concat(variables('factoryId'), '/datasets/CanadaCovidLS')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/CanadaDataPipeline')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"activities": [
+					{
+						"name": "CanadaCovidDataFlow",
+						"type": "ExecuteDataFlow",
+						"dependsOn": [],
+						"policy": {
+							"timeout": "0.12:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"dataflow": {
+								"referenceName": "CovidDataFlow",
+								"type": "DataFlowReference",
+								"parameters": {},
+								"datasetParameters": {
+									"CovidDataSource": {},
+									"CovidDataSource2": {},
+									"GeneralCovidData": {},
+									"CanadianCovidData": {}
+								}
+							},
+							"staging": {},
+							"compute": {
+								"coreCount": 8,
+								"computeType": "General"
+							},
+							"traceLevel": "Fine"
+						}
+					}
+				],
+				"policy": {
+					"elapsedTimeMetric": {}
+				},
+				"annotations": [],
+				"lastPublishTime": "2025-05-27T07:50:30Z"
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/dataflows/CovidDataFlow')]"
+			]
+		}
+	]
+}

@@ -1,0 +1,81 @@
+{
+	"$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"value": "coviddataproject"
+		},
+		"CanadaCovidData_password": {
+			"value": ""
+		},
+		"CanadaCovidLinkService_password": {
+			"value": ""
+		},
+		"CanadaCovidLinkedService_password": {
+			"value": ""
+		},
+		"CovidDataLinkedService_accountKey": {
+			"value": ""
+		},
+		"CovidDatasetSink_password": {
+			"value": ""
+		},
+		"GeneralCovidData_password": {
+			"value": ""
+		},
+		"CanadaCovidData_properties_typeProperties_server": {
+			"value": "bensqldb.database.windows.net"
+		},
+		"CanadaCovidData_properties_typeProperties_database": {
+			"value": "Yourfirstproject"
+		},
+		"CanadaCovidData_properties_typeProperties_userName": {
+			"value": "elusive_ben"
+		},
+		"CanadaCovidLinkService_properties_typeProperties_server": {
+			"value": "bensqldb.database.windows.net"
+		},
+		"CanadaCovidLinkService_properties_typeProperties_database": {
+			"value": "Yourfirstproject"
+		},
+		"CanadaCovidLinkService_properties_typeProperties_userName": {
+			"value": "elusive_ben"
+		},
+		"CanadaCovidLinkedService_properties_typeProperties_server": {
+			"value": "bensqldb.database.windows.net"
+		},
+		"CanadaCovidLinkedService_properties_typeProperties_database": {
+			"value": "Yourfirstproject"
+		},
+		"CanadaCovidLinkedService_properties_typeProperties_userName": {
+			"value": "elusive_bem"
+		},
+		"CovidDataLinkedService_properties_typeProperties_url": {
+			"value": "https://datalakecompanystorage.dfs.core.windows.net/"
+		},
+		"CovidDatasetSink_properties_typeProperties_server": {
+			"value": "bensqldb.database.windows.net"
+		},
+		"CovidDatasetSink_properties_typeProperties_database": {
+			"value": "Yourfirstproject"
+		},
+		"CovidDatasetSink_properties_typeProperties_userName": {
+			"value": "elusive_ben"
+		},
+		"GeneralCovidData_properties_typeProperties_server": {
+			"value": "bensqldb.database.windows.net"
+		},
+		"GeneralCovidData_properties_typeProperties_database": {
+			"value": "Yourfirstproject"
+		},
+		"GeneralCovidData_properties_typeProperties_userName": {
+			"value": "elusive_ben"
+		},
+		"containerUri": {
+			"value": ""
+		},
+		"containerSasToken": {
+			"value": ""
+		}
+	}
+}

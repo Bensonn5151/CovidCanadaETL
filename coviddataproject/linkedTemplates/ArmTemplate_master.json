@@ -1,0 +1,196 @@
+{
+	"$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"type": "string",
+			"metadata": "Data Factory name",
+			"defaultValue": "coviddataproject"
+		},
+		"CanadaCovidData_password": {
+			"type": "secureString",
+			"metadata": "Secure string for 'password' of 'CanadaCovidData'"
+		},
+		"CanadaCovidLinkService_password": {
+			"type": "secureString",
+			"metadata": "Secure string for 'password' of 'CanadaCovidLinkService'"
+		},
+		"CanadaCovidLinkedService_password": {
+			"type": "secureString",
+			"metadata": "Secure string for 'password' of 'CanadaCovidLinkedService'"
+		},
+		"CovidDataLinkedService_accountKey": {
+			"type": "secureString",
+			"metadata": "Secure string for 'accountKey' of 'CovidDataLinkedService'"
+		},
+		"CovidDatasetSink_password": {
+			"type": "secureString",
+			"metadata": "Secure string for 'password' of 'CovidDatasetSink'"
+		},
+		"GeneralCovidData_password": {
+			"type": "secureString",
+			"metadata": "Secure string for 'password' of 'GeneralCovidData'"
+		},
+		"CanadaCovidData_properties_typeProperties_server": {
+			"type": "string",
+			"defaultValue": "bensqldb.database.windows.net"
+		},
+		"CanadaCovidData_properties_typeProperties_database": {
+			"type": "string",
+			"defaultValue": "Yourfirstproject"
+		},
+		"CanadaCovidData_properties_typeProperties_userName": {
+			"type": "string",
+			"defaultValue": "elusive_ben"
+		},
+		"CanadaCovidLinkService_properties_typeProperties_server": {
+			"type": "string",
+			"defaultValue": "bensqldb.database.windows.net"
+		},
+		"CanadaCovidLinkService_properties_typeProperties_database": {
+			"type": "string",
+			"defaultValue": "Yourfirstproject"
+		},
+		"CanadaCovidLinkService_properties_typeProperties_userName": {
+			"type": "string",
+			"defaultValue": "elusive_ben"
+		},
+		"CanadaCovidLinkedService_properties_typeProperties_server": {
+			"type": "string",
+			"defaultValue": "bensqldb.database.windows.net"
+		},
+		"CanadaCovidLinkedService_properties_typeProperties_database": {
+			"type": "string",
+			"defaultValue": "Yourfirstproject"
+		},
+		"CanadaCovidLinkedService_properties_typeProperties_userName": {
+			"type": "string",
+			"defaultValue": "elusive_bem"
+		},
+		"CovidDataLinkedService_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://datalakecompanystorage.dfs.core.windows.net/"
+		},
+		"CovidDatasetSink_properties_typeProperties_server": {
+			"type": "string",
+			"defaultValue": "bensqldb.database.windows.net"
+		},
+		"CovidDatasetSink_properties_typeProperties_database": {
+			"type": "string",
+			"defaultValue": "Yourfirstproject"
+		},
+		"CovidDatasetSink_properties_typeProperties_userName": {
+			"type": "string",
+			"defaultValue": "elusive_ben"
+		},
+		"GeneralCovidData_properties_typeProperties_server": {
+			"type": "string",
+			"defaultValue": "bensqldb.database.windows.net"
+		},
+		"GeneralCovidData_properties_typeProperties_database": {
+			"type": "string",
+			"defaultValue": "Yourfirstproject"
+		},
+		"GeneralCovidData_properties_typeProperties_userName": {
+			"type": "string",
+			"defaultValue": "elusive_ben"
+		},
+		"containerUri": {
+			"type": "string",
+			"metadata": "URI to storage account containing linked ARM templates"
+		},
+		"containerSasToken": {
+			"type": "string",
+			"metadata": "Sas token to storage account containing linked ARM templates"
+		}
+	},
+	"variables": {
+		"factoryId": "[concat('Microsoft.DataFactory/factories/', parameters('factoryName'))]"
+	},
+	"resources": [
+		{
+			"name": "coviddataproject_ArmTemplate_0",
+			"type": "Microsoft.Resources/deployments",
+			"apiVersion": "2024-03-01",
+			"properties": {
+				"mode": "incremental",
+				"templateLink": {
+					"uri": "[concat(parameters('containerUri'), '/ArmTemplate_0.json', parameters('containerSasToken'))]",
+					"contentVersion": "1.0.0.0"
+				},
+				"parameters": {
+					"factoryName": {
+						"value": "[parameters('factoryName')]"
+					},
+					"CanadaCovidData_password": {
+						"value": "[parameters('CanadaCovidData_password')]"
+					},
+					"CanadaCovidLinkService_password": {
+						"value": "[parameters('CanadaCovidLinkService_password')]"
+					},
+					"CanadaCovidLinkedService_password": {
+						"value": "[parameters('CanadaCovidLinkedService_password')]"
+					},
+					"CovidDataLinkedService_accountKey": {
+						"value": "[parameters('CovidDataLinkedService_accountKey')]"
+					},
+					"CovidDatasetSink_password": {
+						"value": "[parameters('CovidDatasetSink_password')]"
+					},
+					"GeneralCovidData_password": {
+						"value": "[parameters('GeneralCovidData_password')]"
+					},
+					"CanadaCovidData_properties_typeProperties_server": {
+						"value": "[parameters('CanadaCovidData_properties_typeProperties_server')]"
+					},
+					"CanadaCovidData_properties_typeProperties_database": {
+						"value": "[parameters('CanadaCovidData_properties_typeProperties_database')]"
+					},
+					"CanadaCovidData_properties_typeProperties_userName": {
+						"value": "[parameters('CanadaCovidData_properties_typeProperties_userName')]"
+					},
+					"CanadaCovidLinkService_properties_typeProperties_server": {
+						"value": "[parameters('CanadaCovidLinkService_properties_typeProperties_server')]"
+					},
+					"CanadaCovidLinkService_properties_typeProperties_database": {
+						"value": "[parameters('CanadaCovidLinkService_properties_typeProperties_database')]"
+					},
+					"CanadaCovidLinkService_properties_typeProperties_userName": {
+						"value": "[parameters('CanadaCovidLinkService_properties_typeProperties_userName')]"
+					},
+					"CanadaCovidLinkedService_properties_typeProperties_server": {
+						"value": "[parameters('CanadaCovidLinkedService_properties_typeProperties_server')]"
+					},
+					"CanadaCovidLinkedService_properties_typeProperties_database": {
+						"value": "[parameters('CanadaCovidLinkedService_properties_typeProperties_database')]"
+					},
+					"CanadaCovidLinkedService_properties_typeProperties_userName": {
+						"value": "[parameters('CanadaCovidLinkedService_properties_typeProperties_userName')]"
+					},
+					"CovidDataLinkedService_properties_typeProperties_url": {
+						"value": "[parameters('CovidDataLinkedService_properties_typeProperties_url')]"
+					},
+					"CovidDatasetSink_properties_typeProperties_server": {
+						"value": "[parameters('CovidDatasetSink_properties_typeProperties_server')]"
+					},
+					"CovidDatasetSink_properties_typeProperties_database": {
+						"value": "[parameters('CovidDatasetSink_properties_typeProperties_database')]"
+					},
+					"CovidDatasetSink_properties_typeProperties_userName": {
+						"value": "[parameters('CovidDatasetSink_properties_typeProperties_userName')]"
+					},
+					"GeneralCovidData_properties_typeProperties_server": {
+						"value": "[parameters('GeneralCovidData_properties_typeProperties_server')]"
+					},
+					"GeneralCovidData_properties_typeProperties_database": {
+						"value": "[parameters('GeneralCovidData_properties_typeProperties_database')]"
+					},
+					"GeneralCovidData_properties_typeProperties_userName": {
+						"value": "[parameters('GeneralCovidData_properties_typeProperties_userName')]"
+					}
+				}
+			},
+			"dependsOn": []
+		}
+	]
+}
