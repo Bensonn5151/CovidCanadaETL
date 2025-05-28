@@ -3,7 +3,7 @@
 	"properties": {
 		"activities": [
 			{
-				"name": "CanadaCovidDataFlow",
+				"name": "CovidDataFlow",
 				"type": "ExecuteDataFlow",
 				"dependsOn": [],
 				"policy": {
